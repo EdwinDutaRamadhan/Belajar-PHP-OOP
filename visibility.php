@@ -3,8 +3,9 @@
     class Produk{//komik dan game
         public  $judul, 
                 $penulis,
-                $penerbit,
-                $harga;
+                $penerbit;
+        protected $diskon = 0;
+        private $harga;
 
         public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0){
             $this->judul = $judul;
@@ -12,6 +13,10 @@
             $this->penerbit = $penerbit;
             $this->harga = $harga;
             
+        }
+
+        public function getHarga(){
+            return $this->harga - ($this->harga * $this->diskon / 100);
         }
 
         public function getLabel(){
@@ -47,6 +52,10 @@
             parent::__construct($judul, $penulis, $penerbit, $harga);
             $this->durasi = $durasi;
             
+        }        
+
+        public function setDiskon($diskon){
+            $this->diskon = $diskon;
         }
         
         public function getInfoProduk(){
@@ -67,10 +76,7 @@
     echo $produk1->getInfoProduk();
     echo "<br>";
     echo $produk2->getInfoProduk();
-    //Komik : masasi Kishimoto, Shonen Jump
-    // Game : Neil Druckman, Sony Computer
-    // Naruto | masasi Kishimoto, Shonen Jump (RP. 30000)
+    echo "<hr>";
 
-    // Komik : Naruto | Masashi Kishimoto, Shonen Jump (RP. 30000) - 100 Halaman.
-    // Game : Uncharted | Neil Druckman,Sony Computer (RP. 250000) - 50 Jam.
+    echo $produk2->getHarga();
     
